@@ -23,30 +23,51 @@ public class VectorMatrix {
     }
 
     @Contract("_ -> new")
-    public static @NotNull Matrix3f xRotationMatrix(float yawAngleRad) {
+    public static @NotNull Matrix3f xRotationMatrix(float angleRad) {
         return new Matrix3f(new Float[] {
                 1f, 0f, 0f,
-                0f, (float) Math.cos(yawAngleRad), (float) -Math.sin(yawAngleRad),
-                0f, (float) Math.sin(yawAngleRad), (float) Math.cos(yawAngleRad)
+                0f, (float) Math.cos(angleRad), (float) -Math.sin(angleRad),
+                0f, (float) Math.sin(angleRad), (float) Math.cos(angleRad)
         });
     }
 
     @Contract("_ -> new")
-    public static @NotNull Matrix3f yRotationMatrix(float pitchAngleRad) {
+    public static @NotNull Matrix3f yRotationMatrix(float angleRad) {
         return new Matrix3f(new Float[] {
-                (float) Math.cos(pitchAngleRad), 0f, (float) -Math.sin(pitchAngleRad),
+                (float) Math.cos(angleRad), 0f, (float) -Math.sin(angleRad),
                 0f, 1f, 0f,
-                (float) Math.sin(pitchAngleRad), 0f, (float) Math.cos(pitchAngleRad)
+                (float) Math.sin(angleRad), 0f, (float) Math.cos(angleRad)
         });
     }
 
     @Contract("_ -> new")
-    public static @NotNull Matrix3f zRotationMatrix(float rollAngleRad) {
+    public static @NotNull Matrix3f zRotationMatrix(float angleRad) {
         return new Matrix3f(new Float[] {
-                (float) Math.cos(rollAngleRad), (float) -Math.sin(rollAngleRad), 0f,
-                (float) Math.sin(rollAngleRad), (float) Math.cos(rollAngleRad), 0f,
+                (float) Math.cos(angleRad), (float) -Math.sin(angleRad), 0f,
+                (float) Math.sin(angleRad), (float) Math.cos(angleRad), 0f,
                 0f, 0f, 1f
         });
+    }
+
+    @Contract("_ -> new")
+    public static void xRotateAroundPoint(Vector who, Vector point, float angleRad) {
+        Vector diff = who.clone().subtract(point);
+        transform(diff, xRotationMatrix(angleRad));
+        who.copy(diff.add(point));
+    }
+
+    @Contract("_ -> new")
+    public static void yRotateAroundPoint(Vector who, Vector point, float angleRad) {
+        Vector diff = who.clone().subtract(point);
+        transform(diff, yRotationMatrix(angleRad));
+        who.copy(diff.add(point));
+    }
+
+    @Contract("_ -> new")
+    public static void zRotateAroundPoint(Vector who, Vector point, float angleRad) {
+        Vector diff = who.clone().subtract(point);
+        transform(diff, zRotationMatrix(angleRad));
+        who.copy(diff.add(point));
     }
 
 }

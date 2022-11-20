@@ -48,10 +48,14 @@ public class DebugCommand implements CommandExecutor {
                 player.getLocation().add(2, -2, 2)
         );
 
-        edge1.rotateY((float) Math.toRadians(player.getLocation().getYaw()));
-        edge2.rotateY((float) Math.toRadians(player.getLocation().getYaw()));
-        edge3.rotateY((float) Math.toRadians(player.getLocation().getYaw()));
-        edge4.rotateY((float) Math.toRadians(player.getLocation().getYaw()));
+        edge1.yRotateAroundPoint(player.getLocation().toVector(),
+                (float) Math.toRadians(player.getLocation().getYaw()));
+        edge2.yRotateAroundPoint(player.getLocation().toVector(),
+                (float) Math.toRadians(player.getLocation().getYaw()));
+        edge3.yRotateAroundPoint(player.getLocation().toVector(),
+                (float) Math.toRadians(player.getLocation().getYaw()));
+        edge4.yRotateAroundPoint(player.getLocation().toVector(),
+                (float) Math.toRadians(player.getLocation().getYaw()));
 
         for (Vector point : edge1.pointsBetween(0.25f)) {
             world.spawnParticle(Particle.REDSTONE, point.toLocation(world), 1, dustOptions);
@@ -66,7 +70,7 @@ public class DebugCommand implements CommandExecutor {
             world.spawnParticle(Particle.REDSTONE, point.toLocation(world), 1, dustOptions);
         }
 
-        player.sendMessage("ok");
+        player.sendMessage("okk");
 
         return true;
     }

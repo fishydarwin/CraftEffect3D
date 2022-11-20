@@ -44,26 +44,41 @@ public class VectorLine {
         return points;
     }
 
-    // TODO: compute & handle distances from center
-    public void rotateX(float yawAngleRad) {
+    public void xRotateAroundOrigin(float angleRad) {
         VectorMatrix.transform(P1,
-                VectorMatrix.xRotationMatrix(yawAngleRad));
+                VectorMatrix.xRotationMatrix(angleRad));
         VectorMatrix.transform(P2,
-                VectorMatrix.xRotationMatrix(yawAngleRad));
+                VectorMatrix.xRotationMatrix(angleRad));
         line = P2.subtract(P1);
     }
-    public void rotateY(float pitchAngleRad) {
+    public void yRotateAroundOrigin(float angleRad) {
         VectorMatrix.transform(P1,
-                VectorMatrix.yRotationMatrix(pitchAngleRad));
+                VectorMatrix.yRotationMatrix(angleRad));
         VectorMatrix.transform(P2,
-                VectorMatrix.yRotationMatrix(pitchAngleRad));
+                VectorMatrix.yRotationMatrix(angleRad));
         line = P2.subtract(P1);
     }
-    public void rotateZ(float rollAngleRad) {
+    public void zRotateAroundOrigin(float angleRad) {
         VectorMatrix.transform(P1,
-                VectorMatrix.zRotationMatrix(rollAngleRad));
+                VectorMatrix.zRotationMatrix(angleRad));
         VectorMatrix.transform(P2,
-                VectorMatrix.zRotationMatrix(rollAngleRad));
+                VectorMatrix.zRotationMatrix(angleRad));
+        line = P2.subtract(P1);
+    }
+
+    public void xRotateAroundPoint(Vector point, float angleRad) {
+        VectorMatrix.xRotateAroundPoint(P1, point, angleRad);
+        VectorMatrix.xRotateAroundPoint(P2, point, angleRad);
+        line = P2.subtract(P1);
+    }
+    public void yRotateAroundPoint(Vector point, float angleRad) {
+        VectorMatrix.yRotateAroundPoint(P1, point, angleRad);
+        VectorMatrix.yRotateAroundPoint(P2, point, angleRad);
+        line = P2.subtract(P1);
+    }
+    public void zRotateAroundPoint(Vector point, float angleRad) {
+        VectorMatrix.zRotateAroundPoint(P1, point, angleRad);
+        VectorMatrix.zRotateAroundPoint(P2, point, angleRad);
         line = P2.subtract(P1);
     }
 
