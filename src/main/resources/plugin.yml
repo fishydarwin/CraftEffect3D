@@ -1,0 +1,10 @@
+name: CraftEffect3D
+version: '${version}'
+main: me.darwj1.crafteffect3d.CraftEffect3D
+api-version: 1.19
+authors: [ darwj ]
+description: Library for various 3D effects processing.
+commands:
+  debug:
+    description: Debug for CraftEffect3D
+    permission: crafteffect.command.debug
