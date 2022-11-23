@@ -56,4 +56,13 @@ public class Matrix3f {
         }
     }
 
+    public Float determinant() {
+        return matrixArray[0] * matrixArray[4] * matrixArray[8] +
+                matrixArray[1] * matrixArray[5] * matrixArray[6] +
+                matrixArray[2] * matrixArray[3] * matrixArray[7] -
+                matrixArray[2] * matrixArray[4] * matrixArray[6] -
+                matrixArray[1] * matrixArray[3] * matrixArray[8] -
+                matrixArray[0] * matrixArray[5] * matrixArray[7];
+    }
+
 }

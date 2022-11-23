@@ -30,6 +30,10 @@ public class VectorLine {
         lineLength = line.length();
     }
 
+    public final double length() {
+        return lineLength;
+    }
+
     public List<Vector> pointsBetween(float precision) {
         List<Vector> points = new ArrayList<>();
 
@@ -42,28 +46,6 @@ public class VectorLine {
         }
 
         return points;
-    }
-
-    public void xRotateAroundOrigin(float angleRad) {
-        VectorMatrix.transform(P1,
-                VectorMatrix.xRotationMatrix(angleRad));
-        VectorMatrix.transform(P2,
-                VectorMatrix.xRotationMatrix(angleRad));
-        line = P2.subtract(P1);
-    }
-    public void yRotateAroundOrigin(float angleRad) {
-        VectorMatrix.transform(P1,
-                VectorMatrix.yRotationMatrix(angleRad));
-        VectorMatrix.transform(P2,
-                VectorMatrix.yRotationMatrix(angleRad));
-        line = P2.subtract(P1);
-    }
-    public void zRotateAroundOrigin(float angleRad) {
-        VectorMatrix.transform(P1,
-                VectorMatrix.zRotationMatrix(angleRad));
-        VectorMatrix.transform(P2,
-                VectorMatrix.zRotationMatrix(angleRad));
-        line = P2.subtract(P1);
     }
 
     public void xRotateAroundPoint(Vector point, float angleRad) {
