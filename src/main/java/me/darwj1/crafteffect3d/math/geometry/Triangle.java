@@ -7,6 +7,10 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A filled triangle representation.
+ * You may combine several triangles into any desired shape.
+ */
 public class Triangle {
 
     private Vector point1;
