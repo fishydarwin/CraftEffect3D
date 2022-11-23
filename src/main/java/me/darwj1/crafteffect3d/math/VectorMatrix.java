@@ -70,4 +70,20 @@ public class VectorMatrix {
         who.copy(diff.add(point));
     }
 
+    @Contract("_ -> new")
+    public static @NotNull Matrix3f xyzScaleMatrix(float x, float y, float z) {
+        return new Matrix3f(new Float[] {
+                x, 0f, 0f,
+                0f, y, 0f,
+                0f, 0f, z
+        });
+    }
+
+    @Contract("_ -> new")
+    public static void xyzScaleAroundPoint(Vector who, Vector point, float x, float y, float z) {
+        Vector diff = who.clone().subtract(point);
+        transform(diff, xyzScaleMatrix(x, y, z));
+        who.copy(diff.add(point));
+    }
+
 }

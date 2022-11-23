@@ -78,4 +78,11 @@ public class Triangle {
         recalculate();
     }
 
+    public void xyzScaleAroundPoint(Vector point, float x, float y, float z) {
+        VectorMatrix.xyzScaleAroundPoint(point1, point, x, y, z);
+        VectorMatrix.xyzScaleAroundPoint(point2, point, x, y, z);
+        VectorMatrix.xyzScaleAroundPoint(point3, point, x, y, z);
+        recalculate();
+    }
+
 }

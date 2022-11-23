@@ -64,4 +64,10 @@ public class VectorLine {
         line = P2.subtract(P1);
     }
 
+    public void xyzScaleAroundPoint(Vector point, float x, float y, float z) {
+        VectorMatrix.xyzScaleAroundPoint(P1, point, x, y, z);
+        VectorMatrix.xyzScaleAroundPoint(P2, point, x, y, z);
+        line = P2.subtract(P1);
+    }
+
 }

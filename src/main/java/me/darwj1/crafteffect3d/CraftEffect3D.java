@@ -8,7 +8,7 @@ public final class CraftEffect3D extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        getCommand("debug").setExecutor(new DebugCommand());
+        getCommand("debug").setExecutor(new DebugCommand(this));
 
     }
 
