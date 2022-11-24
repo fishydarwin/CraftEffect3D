@@ -37,6 +37,21 @@ public class ObjShape implements FileShape {
     }
 
     @Override
+    public List<Vector> surfacePoints(float precision) {
+        List<Vector> points = new ArrayList<>();
+
+        for (List<Integer> face : faces) {
+            Vector vertex1 = vertices.get(face.get(0));
+            Vector vertex2 = vertices.get(face.get(1));
+            Vector vertex3 = vertices.get(face.get(2));
+            Triangle t = new Triangle(vertex1, vertex2, vertex3);
+            points.addAll(t.surfacePoints(precision));
+        }
+
+        return points;
+    }
+
+    @Override
     public void xRotateAroundPoint(Vector point, float angleRad) {
         for (Vector vertex : vertices) {
             VectorMatrix.xRotateAroundPoint(vertex, point, angleRad);
@@ -74,15 +89,17 @@ public class ObjShape implements FileShape {
         String line = reader.readLine();
         while (line != null) {
             if (line.startsWith("v ")) {
-                String[] split = line.split(" ");
+
+                String[] split = line.trim().replaceAll(" +", " ").split(" ");
                 float x = Float.parseFloat(split[1]);
                 float y = Float.parseFloat(split[2]);
                 float z = Float.parseFloat(split[3]);
                 vertices.add(new Vector(x, y, z));
+
             } else if (line.startsWith("f ")) {
 
                 line.replace("//", "/");
-                String[] split = line.split(" ");
+                String[] split = line.trim().replaceAll(" +", " ").split(" ");
                 int v1i = Integer.parseInt(split[1].split(Pattern.quote("/"))[0]);
                 int v2i = Integer.parseInt(split[2].split(Pattern.quote("/"))[0]);
                 int v3i = Integer.parseInt(split[3].split(Pattern.quote("/"))[0]);

@@ -10,6 +10,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.Debug;
 import org.jetbrains.annotations.NotNull;
@@ -57,13 +58,11 @@ public class DebugCommand implements CommandExecutor {
                     shape.yRotateAroundPoint(new Vector(0, 0, 0),
                             (float) Math.toRadians(player.getLocation().getYaw()));
 
-                    for (Triangle t : shape.surfaceTriangles()) {
-                        for (Vector point : t.surfacePoints(precision)) {
-                            world.spawnParticle(
-                                    Particle.REDSTONE,
-                                    player.getLocation().add(point.toLocation(world)),
-                                    1, dustOptions);
-                        }
+                    for (Vector point : shape.surfacePoints(precision)) {
+                        world.spawnParticle(
+                                Particle.REDSTONE,
+                                player.getLocation().add(point.toLocation(world)),
+                                1, dustOptions);
                     }
 
                     player.sendMessage("Done in " + ((Long) (System.currentTimeMillis() - time)).toString() + "ms");

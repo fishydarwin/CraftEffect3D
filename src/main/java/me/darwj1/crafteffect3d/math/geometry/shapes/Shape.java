@@ -11,6 +11,7 @@ import java.util.List;
 public interface Shape {
 
     public List<Triangle> surfaceTriangles();
+    public List<Vector> surfacePoints(float precision);
 
     public void xRotateAroundPoint(Vector point, float angleRad);
     public void yRotateAroundPoint(Vector point, float angleRad);
